@@ -3,7 +3,7 @@ from tkinter import filedialog, messagebox, StringVar
 from tkinterdnd2 import TkinterDnD, DND_FILES
 import os
 import json
-import backend  # Importer le fichier backend
+import main  # Importer le fichier main
 
 
 def on_drag_enter(event):
@@ -45,12 +45,12 @@ def generate_file():
         return
 
     probe_code = snippet_entry.get()  # Use the snippet from the entry
-    new_lines = backend.inject_probe_z(input_file, output_file, probe_code)
+    new_lines = main.inject_probe_z(input_file, output_file, probe_code)
 
     messagebox.showinfo("Success", "File generated successfully")
     open_folder_button.pack(pady=10)
     open_folder_button.configure(
-        command=lambda: backend.open_folder(os.path.dirname(output_file))
+        command=lambda: main.open_folder(os.path.dirname(output_file))
     )
 
     # Afficher le G-code dans le visualiseur avec les numéros de ligne et colorer les parenthèses, lignes injectées et commandes
@@ -185,7 +185,7 @@ customtkinter.set_default_color_theme("dark-blue")
 # Création de l'application
 app = TkinterDnD.Tk()
 app.title("GCode Modifier")
-app.geometry("800x500")
+app.geometry("1100x850")
 app.config(bg="#2e2e2e")
 
 file_path = customtkinter.StringVar()
@@ -219,7 +219,7 @@ toggle_mode_button = customtkinter.CTkButton(
     corner_radius=10,
     font=font,
 )
-toggle_mode_button.place(x=10, y=10)
+toggle_mode_button.place(x=20, y=20)
 
 # Cadre pour le glisser-déposer
 dnd_frame = customtkinter.CTkFrame(
@@ -274,13 +274,13 @@ snippet_entry = customtkinter.CTkEntry(frame, width=400, font=font)
 snippet_entry.pack(pady=5, padx=10, anchor="w")
 
 # Charger le snippet depuis le fichier JSON
-backend.load_snippet(snippet_entry)
+main.load_snippet(snippet_entry)
 
 # Bouton pour enregistrer le snippet
 save_snippet_button = customtkinter.CTkButton(
     frame,
     text="Save Snippet",
-    command=lambda: backend.save_snippet(snippet_entry),
+    command=lambda: main.save_snippet(snippet_entry),
     fg_color="#4e4e4e",
     text_color="white",
     corner_radius=10,
