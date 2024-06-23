@@ -1,5 +1,5 @@
 import customtkinter
-from tkinter import filedialog, messagebox, StringVar
+from tkinter import filedialog, messagebox, StringVar, PhotoImage
 from tkinterdnd2 import TkinterDnD, DND_FILES
 import os
 import json
@@ -176,9 +176,13 @@ app.title("GCode Modifier")
 app.geometry("550x700")
 app.config(bg="#05040A")
 
+# Définir l'icône de la fenêtre
+icon_path = "icon.png"  
+app.iconphoto(False, PhotoImage(file=icon_path))
+
 file_path = customtkinter.StringVar()
 
-font = ("Dubai", 16)  # Définir une police plus lisible
+font = ("Dubai", 16)
 
 frame = customtkinter.CTkFrame(app, bg_color="#05040A", fg_color="#05040A")
 frame.pack(
@@ -214,10 +218,10 @@ dnd_frame = customtkinter.CTkFrame(
     frame,
     bg_color="#05040A",
     fg_color="#1D1A29",
-    border_width=2,
+    border_width=1,
     width=500,
     height=150,
-    corner_radius=10,
+    corner_radius=15,
 )
 dnd_frame.pack(pady=60, padx=20, fill=customtkinter.BOTH, expand=True)
 
@@ -244,7 +248,8 @@ browse_button = customtkinter.CTkButton(
     fg_color="#1D1A29",
     text_color="white",
     corner_radius=10,
-    border_width=2,
+    border_width=1,
+    border_color="#7F8AB5",
     font=font,
 )
 browse_button.place(relx=0.5, rely=0.7, anchor="center")
@@ -298,9 +303,11 @@ save_snippet_button = customtkinter.CTkButton(
     entry_frame,
     text="Save Snippet",
     command=lambda: main.save_snippet(snippet_entry),
-    fg_color="#4e4e4e",
+    fg_color="#24203B",
     text_color="white",
     corner_radius=10,
+    border_width=1,
+    border_color="#7F8AB5",
     font=font,
 )
 save_snippet_button.grid(row=2, column=0, pady=10, padx=10, sticky="w")
@@ -310,9 +317,11 @@ save_pattern_button = customtkinter.CTkButton(
     entry_frame,
     text="Save Pattern",
     command=lambda: main.save_pattern(pattern_entry),
-    fg_color="#4e4e4e",
+    fg_color="#24203B",
     text_color="white",
     corner_radius=10,
+    border_width=1,
+    border_color="#7F8AB5",
     font=font,
 )
 save_pattern_button.grid(row=2, column=1, pady=10, padx=10, sticky="w")
@@ -322,10 +331,11 @@ generate_button = customtkinter.CTkButton(
     entry_frame,
     text="Generate File",
     command=generate_file,
-    fg_color="#4e4e4e",
+    fg_color="#24203B",
     text_color="white",
     corner_radius=10,
-    border_width=3,
+    border_width=2,
+    border_color="#7F8AB5",
     width=380,
     height=45,
     font=font,
@@ -337,9 +347,11 @@ open_folder_button = customtkinter.CTkButton(
     entry_frame,
     text="Open Folder",
     command=None,
-    fg_color="#4e4e4e",
+    fg_color="#24203B",
     text_color="white",
     corner_radius=10,
+    border_width=1,
+    border_color="#7F8AB5",
     font=font,
 )
 open_folder_button.grid(row=4, column=0, columnspan=2, pady=20)
