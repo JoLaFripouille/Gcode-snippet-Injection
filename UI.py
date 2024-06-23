@@ -143,9 +143,9 @@ def toggle_mode():
 
 
 def change_language(lang):
-    with open('languages.json', 'r', encoding='utf-8') as f:
+    with open("languages.json", "r", encoding="utf-8") as f:
         languages = json.load(f)
-    
+
     if lang in languages:
         texts = languages[lang]
     else:
@@ -325,9 +325,12 @@ generate_button = customtkinter.CTkButton(
     fg_color="#4e4e4e",
     text_color="white",
     corner_radius=10,
+    border_width=3,
+    width=380,
+    height=45,
     font=font,
 )
-generate_button.grid(row=3, column=0, columnspan=2, pady=20, padx=10)
+generate_button.grid(row=3, column=0, columnspan=2, pady=30, padx=50)
 
 # Bouton pour ouvrir le dossier une fois le fichier généré
 open_folder_button = customtkinter.CTkButton(
@@ -349,7 +352,7 @@ gcode_text = customtkinter.CTkTextbox(
     fg_color="#1D1A29",
     text_color="white",
     corner_radius=12,
-    font=font
+    font=font,
 )
 gcode_text.pack_forget()
 
