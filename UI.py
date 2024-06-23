@@ -59,6 +59,8 @@ def generate_file():
     numbered_lines = [f"{i+1}: {line}" for i, line in enumerate(lines)]
     gcode_content = "".join(numbered_lines)
 
+    # Créer et afficher la zone de visualisation du G-code
+    gcode_text.pack(side=customtkinter.RIGHT, fill=customtkinter.BOTH, expand=True)
     gcode_text.delete(1.0, customtkinter.END)
     gcode_text.insert(customtkinter.END, gcode_content)
 
@@ -128,7 +130,9 @@ def generate_file():
     gcode_text.tag_config("x", foreground="pink")
     gcode_text.tag_config("y", foreground="green")
     gcode_text.tag_config("z", foreground="purple")
-    gcode_text.pack(side=customtkinter.RIGHT, fill=customtkinter.BOTH, expand=True)
+
+    # Redimensionner la fenêtre principale
+    app.geometry("1250x850")
 
 
 def toggle_mode():
@@ -154,6 +158,9 @@ def change_language(lang):
     snippet_label.configure(text=texts["snippet_label"])
     save_snippet_button.configure(text=texts["save_snippet"])
 
+
+def change_text_color(widget, color):
+    widget.configure(text_color=color)
 
 
 # Configuration initiale
@@ -291,11 +298,11 @@ open_folder_button = customtkinter.CTkButton(
 open_folder_button.pack(pady=20)
 open_folder_button.pack_forget()  # Hide initially
 
-# Zone de visualisation du G-code
+# Zone de visualisation du G-code, initialement cachée
 gcode_text = customtkinter.CTkTextbox(
     app, bg_color="#2e2e2e", fg_color="#2e2e2e", text_color="white", font=font
 )
-gcode_text.pack(side=customtkinter.RIGHT, fill=customtkinter.BOTH, expand=True)
+gcode_text.pack_forget()
 
 # Lancer l'application
 app.mainloop()
