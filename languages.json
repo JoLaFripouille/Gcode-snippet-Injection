@@ -6,7 +6,9 @@
         "generate_file": "Generate File",
         "open_folder": "Open Folder",
         "snippet_label": "Snippet to Inject:",
-        "save_snippet": "Save Snippet"
+        "save_snippet": "Save Snippet",
+        "pattern_label": "Pattern:",
+        "save_pattern": "Save Pattern"
     },
     "Français": {
         "toggle_mode": "Changer de mode",
@@ -15,7 +17,9 @@
         "generate_file": "Générer le fichier",
         "open_folder": "Ouvrir le dossier",
         "snippet_label": "Snippet à injecter:",
-        "save_snippet": "Enregistrer le snippet"
+        "save_snippet": "Enregistrer le snippet",
+        "pattern_label": "Motif:",
+        "save_pattern": "Enregistrer le motif"
     },
     "ไทย": {
         "toggle_mode": "สลับโหมด",
@@ -24,6 +28,8 @@
         "generate_file": "สร้างไฟล์",
         "open_folder": "เปิดโฟลเดอร์",
         "snippet_label": "โค้ดที่จะฉีด:",
-        "save_snippet": "บันทึกโค้ด"
+        "save_snippet": "บันทึกโค้ด",
+        "pattern_label": "รูปแบบ:",
+        "save_pattern": "บันทึกรูปแบบ"
     }
 }

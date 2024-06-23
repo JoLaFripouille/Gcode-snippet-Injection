@@ -3,7 +3,6 @@ import os
 import shutil
 from tkinter import messagebox
 
-
 def load_snippet(entry):
     try:
         with open("snippet.json", "r") as f:
@@ -14,15 +13,29 @@ def load_snippet(entry):
         entry.delete(0, "end")
         entry.insert(0, "G38.2 Z-10 F100")  # Default value
 
-
 def save_snippet(entry):
     snippet = entry.get()
     with open("snippet.json", "w") as f:
         json.dump({"snippet": snippet}, f)
     messagebox.showinfo("Success", "Snippet saved successfully")
 
+def load_pattern(entry):
+    try:
+        with open("pattern.json", "r") as f:
+            data = json.load(f)
+            entry.delete(0, "end")
+            entry.insert(0, data.get("pattern", ""))
+    except FileNotFoundError:
+        entry.delete(0, "end")
+        entry.insert(0, "default_pattern")  # Default value
 
-def inject_probe_z(input_file, output_file, probe_code):
+def save_pattern(entry):
+    pattern = entry.get()
+    with open("pattern.json", "w") as f:
+        json.dump({"pattern": pattern}, f)
+    messagebox.showinfo("Success", "Pattern saved successfully")
+
+def inject_probe_z(input_file, output_file, probe_code, pattern):
     with open(input_file, "r") as file:
         lines = file.readlines()
 
@@ -36,7 +49,6 @@ def inject_probe_z(input_file, output_file, probe_code):
         file.writelines(new_lines)
 
     return new_lines  # Retourner les nouvelles lignes pour les identifier dans le visualiseur
-
 
 def open_folder(folder_path):
     if os.name == "nt":  # Windows
