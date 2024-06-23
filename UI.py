@@ -57,7 +57,9 @@ def generate_file():
     # Afficher le G-code dans le visualiseur avec les numéros de ligne et colorer les parenthèses, lignes injectées et commandes
     with open(output_file, "r") as file:
         lines = file.readlines()
-    numbered_lines = [f"{i+1}: {line}" for i, line in enumerate(lines)]
+    
+    # Ajouter des espaces après les numéros de ligne pour les aligner
+    numbered_lines = [f"{i+1} . {' '*(4-len(str(i+1)))}{line}" for i, line in enumerate(lines)]
     gcode_content = "".join(numbered_lines)
 
     # Créer et afficher la zone de visualisation du G-code
@@ -114,7 +116,7 @@ def generate_file():
         start_index = "1.0"
         while True:
             start_index = gcode_text.search(
-                rf"{coord}-?\d+(\.\d+)?",
+                rf"{coord}-?\d+(\.\d{{0,4}})?",
                 start_index,
                 stopindex=customtkinter.END,
                 regexp=True,
@@ -124,7 +126,7 @@ def generate_file():
             end_index = gcode_text.index(f"{start_index} wordend")
             gcode_text.tag_add(coord.lower(), start_index, end_index)
             start_index = end_index
-
+            
     gcode_text.tag_config("paren", foreground="yellow")
     gcode_text.tag_config("injected", foreground="red")
     gcode_text.tag_config("command", foreground="#1FDFFF")
@@ -133,7 +135,7 @@ def generate_file():
     gcode_text.tag_config("z", foreground="#7A0AFF")
 
     # Redimensionner la fenêtre principale
-    app.geometry("1250x850")
+    app.geometry("1350x630")
 
 
 def toggle_mode():
@@ -173,7 +175,7 @@ customtkinter.set_default_color_theme("dark-blue")
 # Création de l'application
 app = TkinterDnD.Tk()
 app.title("GCode Modifier")
-app.geometry("550x700")
+app.geometry("550x600")
 app.config(bg="#05040A")
 
 # Définir l'icône de la fenêtre
@@ -182,6 +184,7 @@ app.iconphoto(False, PhotoImage(file=icon_path))
 
 file_path = customtkinter.StringVar()
 
+# Définir la font
 font = ("Dubai", 16)
 
 frame = customtkinter.CTkFrame(app, bg_color="#05040A", fg_color="#05040A")
@@ -338,9 +341,9 @@ generate_button = customtkinter.CTkButton(
     border_color="#7F8AB5",
     width=380,
     height=45,
-    font=font,
+    font=("Dubai", 22),
 )
-generate_button.grid(row=3, column=0, columnspan=2, pady=30, padx=50)
+generate_button.grid(row=3, column=0, columnspan=2, pady=15, padx=50)
 
 # Bouton pour ouvrir le dossier une fois le fichier généré
 open_folder_button = customtkinter.CTkButton(
@@ -350,9 +353,11 @@ open_folder_button = customtkinter.CTkButton(
     fg_color="#24203B",
     text_color="white",
     corner_radius=10,
-    border_width=1,
+    width=380,
+    height=45,
+    border_width=2,
     border_color="#7F8AB5",
-    font=font,
+    font=("Dubai", 22),
 )
 open_folder_button.grid(row=4, column=0, columnspan=2, pady=20)
 open_folder_button.grid_remove()  # Hide initially
@@ -364,7 +369,9 @@ gcode_text = customtkinter.CTkTextbox(
     fg_color="#1D1A29",
     text_color="white",
     corner_radius=12,
-    font=font,
+    width=800,
+    font=("Consolas", 15),
+    border_width=1
 )
 gcode_text.pack_forget()
 
