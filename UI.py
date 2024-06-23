@@ -127,10 +127,10 @@ def generate_file():
 
     gcode_text.tag_config("paren", foreground="yellow")
     gcode_text.tag_config("injected", foreground="red")
-    gcode_text.tag_config("command", foreground="lightblue")
-    gcode_text.tag_config("x", foreground="pink")
-    gcode_text.tag_config("y", foreground="green")
-    gcode_text.tag_config("z", foreground="purple")
+    gcode_text.tag_config("command", foreground="#1FDFFF")
+    gcode_text.tag_config("x", foreground="#FF29B4")
+    gcode_text.tag_config("y", foreground="#18FFD4")
+    gcode_text.tag_config("z", foreground="#7A0AFF")
 
     # Redimensionner la fenêtre principale
     app.geometry("1250x850")
@@ -168,19 +168,19 @@ def change_text_color(widget, color):
 
 # Configuration initiale
 customtkinter.set_appearance_mode("Dark")
-customtkinter.set_default_color_theme("green")
+customtkinter.set_default_color_theme("dark-blue")
 
 # Création de l'application
 app = TkinterDnD.Tk()
 app.title("GCode Modifier")
 app.geometry("550x700")
-app.config(bg="#2e2e2e")
+app.config(bg="#05040A")
 
 file_path = customtkinter.StringVar()
 
 font = ("Dubai", 16)  # Définir une police plus lisible
 
-frame = customtkinter.CTkFrame(app, bg_color="#2e2e2e", fg_color="#2e2e2e")
+frame = customtkinter.CTkFrame(app, bg_color="#05040A", fg_color="#05040A")
 frame.pack(
     side=customtkinter.LEFT, pady=20, padx=20, fill=customtkinter.BOTH, expand=True
 )
@@ -207,12 +207,12 @@ toggle_mode_button = customtkinter.CTkButton(
     corner_radius=10,
     font=font,
 )
-toggle_mode_button.place(x=50, y=20)
+
 
 # Cadre pour le glisser-déposer
 dnd_frame = customtkinter.CTkFrame(
     frame,
-    bg_color="#2e2e2e",
+    bg_color="#05040A",
     fg_color="#1D1A29",
     border_width=2,
     width=500,
@@ -228,7 +228,7 @@ dnd_frame.dnd_bind("<<DragEnter>>", on_drag_enter)
 # Étiquette pour le glisser-déposer
 label = customtkinter.CTkLabel(
     dnd_frame,
-    text="Drag and drop your GCode file here or click to browse",
+    text="Drag and drop your GCode file here or click to browse\n       [*.nc *.cnc *.ngc *.gcode *.tap]",
     bg_color="#1D1A29",
     fg_color="#1D1A29",
     text_color="white",
@@ -252,8 +252,8 @@ browse_button.place(relx=0.5, rely=0.7, anchor="center")
 # Cadre pour les entrées et les boutons
 entry_frame = customtkinter.CTkFrame(
     frame,
-    bg_color="#2e2e2e",
-    fg_color="#2e2e2e",
+    bg_color="#05040A",
+    fg_color="#05040A",
     corner_radius=10,
 )
 entry_frame.pack(pady=20, padx=20, fill=customtkinter.BOTH, expand=True)
@@ -262,8 +262,8 @@ entry_frame.pack(pady=20, padx=20, fill=customtkinter.BOTH, expand=True)
 snippet_label = customtkinter.CTkLabel(
     entry_frame,
     text="Snippet to Inject:",
-    bg_color="#2e2e2e",
-    fg_color="#2e2e2e",
+    bg_color="#05040A",
+    fg_color="#05040A",
     text_color="white",
     font=font,
 )
@@ -279,8 +279,8 @@ main.load_snippet(snippet_entry)
 pattern_label = customtkinter.CTkLabel(
     entry_frame,
     text="Pattern:",
-    bg_color="#2e2e2e",
-    fg_color="#2e2e2e",
+    bg_color="#05040A",
+    fg_color="#05040A",
     text_color="white",
     font=font,
 )
@@ -348,7 +348,7 @@ open_folder_button.grid_remove()  # Hide initially
 # Zone de visualisation du G-code, initialement cachée
 gcode_text = customtkinter.CTkTextbox(
     app,
-    bg_color="#2e2e2e",
+    bg_color="#05040A",
     fg_color="#1D1A29",
     text_color="white",
     corner_radius=12,

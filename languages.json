@@ -1,7 +1,7 @@
 {
     "English": {
         "toggle_mode": "Toggle Mode",
-        "drag_and_drop": "Drag and drop your GCode file here or click to browse",
+        "drag_and_drop": "Drag and drop your GCode file here or click to browse \n      [*.nc *.cnc *.ngc *.gcode *.tap]",
         "browse_file": "Browse File",
         "generate_file": "Generate File",
         "open_folder": "Open Folder",
@@ -12,7 +12,7 @@
     },
     "Français": {
         "toggle_mode": "Changer de mode",
-        "drag_and_drop": "Glissez-déposez votre fichier GCode ici ou cliquez pour parcourir",
+        "drag_and_drop": "Glissez-déposez votre fichier GCode ici ou cliquez pour parcourir\n       [*.nc *.cnc *.ngc *.gcode *.tap]",
         "browse_file": "Parcourir le fichier",
         "generate_file": "Générer le fichier",
         "open_folder": "Ouvrir le dossier",
@@ -23,7 +23,7 @@
     },
     "ไทย": {
         "toggle_mode": "สลับโหมด",
-        "drag_and_drop": "ลากและวางไฟล์ GCode ของคุณที่นี่หรือตคลิกเพื่อเรียกดู",
+        "drag_and_drop": "ลากและวางไฟล์ GCode ของคุณที่นี่หรือตคลิกเพื่อเรียกดู\n       [*.nc *.cnc *.ngc *.gcode *.tap]",
         "browse_file": "เลือกไฟล์",
         "generate_file": "สร้างไฟล์",
         "open_folder": "เปิดโฟลเดอร์",
