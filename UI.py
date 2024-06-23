@@ -138,36 +138,13 @@ def toggle_mode():
 
 
 def change_language(lang):
-    if lang == "English":
-        texts = {
-            "toggle_mode": "Toggle Mode",
-            "drag_and_drop": "Drag and drop your GCode file here or click to browse",
-            "browse_file": "Browse File",
-            "generate_file": "Generate File",
-            "open_folder": "Open Folder",
-            "snippet_label": "Snippet to Inject:",
-            "save_snippet": "Save Snippet",
-        }
-    elif lang == "Français":
-        texts = {
-            "toggle_mode": "Changer de mode",
-            "drag_and_drop": "Glissez-déposez votre fichier GCode ici ou cliquez pour parcourir",
-            "browse_file": "Parcourir le fichier",
-            "generate_file": "Générer le fichier",
-            "open_folder": "Ouvrir le dossier",
-            "snippet_label": "Snippet à injecter:",
-            "save_snippet": "Enregistrer le snippet",
-        }
-    elif lang == "ไทย":
-        texts = {
-            "toggle_mode": "สลับโหมด",
-            "drag_and_drop": "ลากและวางไฟล์ GCode ของคุณที่นี่หรือตคลิกเพื่อเรียกดู",
-            "browse_file": "เลือกไฟล์",
-            "generate_file": "สร้างไฟล์",
-            "open_folder": "เปิดโฟลเดอร์",
-            "snippet_label": "โค้ดที่จะฉีด:",
-            "save_snippet": "บันทึกโค้ด",
-        }
+    with open('languages.json', 'r', encoding='utf-8') as f:
+        languages = json.load(f)
+    
+    if lang in languages:
+        texts = languages[lang]
+    else:
+        texts = languages["English"]
 
     toggle_mode_button.configure(text=texts["toggle_mode"])
     label.configure(text=texts["drag_and_drop"])
@@ -178,19 +155,20 @@ def change_language(lang):
     save_snippet_button.configure(text=texts["save_snippet"])
 
 
+
 # Configuration initiale
 customtkinter.set_appearance_mode("Dark")
-customtkinter.set_default_color_theme("dark-blue")
+customtkinter.set_default_color_theme("green")
 
 # Création de l'application
 app = TkinterDnD.Tk()
 app.title("GCode Modifier")
-app.geometry("1100x850")
+app.geometry("550x850")
 app.config(bg="#2e2e2e")
 
 file_path = customtkinter.StringVar()
 
-font = ("Segoe UI", 12)  # Définir une police plus lisible
+font = ("Dubai", 16)  # Définir une police plus lisible
 
 frame = customtkinter.CTkFrame(app, bg_color="#2e2e2e", fg_color="#2e2e2e")
 frame.pack(
@@ -207,7 +185,7 @@ language_menu = customtkinter.CTkOptionMenu(
     variable=selected_language,
     font=font,
 )
-language_menu.place(x=200, y=10)
+language_menu.place(x=180, y=20)
 
 # Bouton pour changer le mode
 toggle_mode_button = customtkinter.CTkButton(
@@ -230,7 +208,7 @@ dnd_frame = customtkinter.CTkFrame(
     height=150,
     corner_radius=10,
 )
-dnd_frame.pack(pady=10, padx=10, fill=customtkinter.BOTH, expand=True)
+dnd_frame.pack(pady=70, padx=20, fill=customtkinter.BOTH, expand=True)
 
 dnd_frame.drop_target_register(DND_FILES)
 dnd_frame.dnd_bind("<<Drop>>", on_drop)
